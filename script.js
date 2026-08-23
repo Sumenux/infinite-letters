@@ -321,4 +321,4 @@ collectionList.addEventListener("click", (e) => {
   button.textContent = "Store it";
 });
 
-updateMainButtonState()
+updateMainButtonState();
