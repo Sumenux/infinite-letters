@@ -335,4 +335,3 @@ collectionList.addEventListener("click", (e) => {
 });
 
 updateMainButtonState();
-updateMainButtonState();
