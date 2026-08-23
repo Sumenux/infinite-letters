@@ -289,7 +289,7 @@ nav{
   text-align: center;
 }
 
-/* Tablettes */
+/* Tablets */
 @media (max-width: 768px) {
   nav {
     top: 10px;
@@ -308,7 +308,7 @@ nav{
   }
 }
 
-/* Téléphones */
+/* Phones */
 @media (max-width: 480px) {
   nav {
     top: 8px;
@@ -348,7 +348,7 @@ nav{
   }
 }
 
-/* Petits téléphones */
+/* Small phones */
 @media (max-width: 360px) {
   .scene {
     transform: translateX(-50%) scale(0.55);
