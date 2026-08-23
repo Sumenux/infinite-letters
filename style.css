@@ -289,7 +289,19 @@ nav{
   text-align: center;
 }
 
-/* Tablets */
+#collection-progress{
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #a22;
+}
+
+.category-progress{
+  color: #a22;
+  font-size: 12px;
+}
+
+/* Tablettes */
 @media (max-width: 768px) {
   nav {
     top: 10px;
@@ -308,7 +320,7 @@ nav{
   }
 }
 
-/* Phones */
+/* Téléphones */
 @media (max-width: 480px) {
   nav {
     top: 8px;
@@ -348,7 +360,7 @@ nav{
   }
 }
 
-/* Small phones */
+/* Petits téléphones */
 @media (max-width: 360px) {
   .scene {
     transform: translateX(-50%) scale(0.55);
