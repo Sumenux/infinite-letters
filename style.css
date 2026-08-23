@@ -358,3 +358,9 @@ nav{
     font-size: 20px;
   }
 }
+
+.main-button,
+.read-button,
+.store-button {
+  color: #000;
+}
