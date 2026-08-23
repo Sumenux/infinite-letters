@@ -1,7 +1,3 @@
-:root {
-  --pixel: url("fonts/PixelatedPusab.ttf");
-}
-
 html{
   background-color: rgb(250, 208, 214);
 }
@@ -166,6 +162,7 @@ nav{
   width: 50px;
   height: 50px;
   border-radius: 8px;
+  position: relative;
 }
 
 .collection-icon{
@@ -267,16 +264,27 @@ nav{
   justify-content: center;
 }
 
-@font-face {
-  font-family: "pixel";
-  src: url("./fonts/pixelatedPusab.ttf") format("truetype");
-  font-display: swap;
+.collection-button {
+  position: relative;
 }
 
-body,
-button,
-.paper-message {
-  font-family: "pixel", sans-serif;
+.collection-notification {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 24px;
+  height: 24px;
+  padding: 2px 5px;
+  box-sizing: border-box;
+  color: white;
+  background: #d22;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: center;
 }
 
 /* Tablettes */
