@@ -301,7 +301,7 @@ nav{
   }
 
   .scene {
-    transform: scale(0.85);
+    transform: translateX(-50%) scale(0.85);
     transform-origin: center center;
   }
 }
@@ -331,7 +331,7 @@ nav{
   }
 
   .scene {
-    transform: scale(0.65);
+    transform: translateX(-50%) scale(0.65);
     transform-origin: center center;
   }
 
@@ -349,7 +349,7 @@ nav{
 /* Petits téléphones */
 @media (max-width: 360px) {
   .scene {
-    transform: scale(0.55);
+    transform: translateX(-50%) scale(0.55);
   }
 
   .page-collection-content h1 {
