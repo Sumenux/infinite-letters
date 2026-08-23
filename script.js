@@ -6,6 +6,7 @@ const paperMessage = document.querySelector(".paper-message");
 const collectionButton = document.getElementById("collection-button");
 const pageCollection = document.getElementById("page-collection");
 const collectionList = document.getElementById("collection-list");
+const collectionNotification = document.getElementById("collection-notification");
 const scene = document.querySelector(".scene");
 
 if (!collectionList) {
@@ -13,6 +14,7 @@ if (!collectionList) {
 }
 
 let animation = null;
+let newMessagesCount = 0;
 
 const positions = [
   "0%",
@@ -221,6 +223,12 @@ function updateMainButtonState() {
   }
 }
 
+function updateCollectionNotification() {
+  collectionNotification.textContent = `+${newMessagesCount}`;
+  collectionNotification.style.display =
+    newMessagesCount > 0 ? "block" : "none";
+}
+
 button.addEventListener("click", () => {
   // Close collection panel if it is open, then continue normally.
   if (pageCollection.classList.contains("show")) {
@@ -272,6 +280,8 @@ readButton.addEventListener("click", () => {
   const seen = loadSeenMessages();
   seen.push(message);
   saveSeenMessages(seen);
+  newMessagesCount++;
+  updateCollectionNotification();
   renderCollection();
 
   paperMessage.textContent = message;
@@ -302,6 +312,9 @@ collectionButton.addEventListener("click", () => {
 
   pageCollection.classList.add("show");
   collectionList.scrollTop = 0;
+
+  newMessagesCount = 0;
+  updateCollectionNotification();
 });
 
 renderCollection();
@@ -321,4 +334,5 @@ collectionList.addEventListener("click", (e) => {
   button.textContent = "Store it";
 });
 
+updateMainButtonState();
 updateMainButtonState();
