@@ -8,6 +8,7 @@ const pageCollection = document.getElementById("page-collection");
 const collectionList = document.getElementById("collection-list");
 const collectionNotification = document.getElementById("collection-notification");
 const scene = document.querySelector(".scene");
+const collectionProgress = document.getElementById("collection-progress");
 
 if (!collectionList) {
   console.error('collectionList element not found');
@@ -140,19 +141,27 @@ function createCollectionItem(message, { seen = false, locked = false } = {}) {
   return item;
 }
 
-function createCategorySection(title, items) {
+function createCategorySection(title, items, progressText = "") {
   const section = document.createElement("div");
   section.className = "message-category";
 
   const label = document.createElement("div");
   label.className = "message-category-label";
-  label.textContent = title;
+
+  const titleText = document.createElement("span");
+  titleText.textContent = title;
+  label.appendChild(titleText);
+
+  if (progressText) {
+    const progress = document.createElement("span");
+    progress.textContent = ` ${progressText}`;
+    progress.className = "category-progress";
+    label.appendChild(progress);
+  }
 
   const list = document.createElement("div");
   list.className = "message-category-list";
-  items.forEach((item) => {
-    list.appendChild(item);
-  });
+  items.forEach((item) => list.appendChild(item));
 
   section.appendChild(label);
   section.appendChild(list);
@@ -161,6 +170,9 @@ function createCategorySection(title, items) {
 
 function renderCollection() {
   const seen = new Set(loadSeenMessages().filter((message) => messages.includes(message)));
+
+  collectionProgress.textContent = `${seen.size}/${messages.length}`;
+
   const allNormalSeen = normalMessages.every((message) => seen.has(message));
 
   collectionList.innerHTML = "";
@@ -170,7 +182,13 @@ function renderCollection() {
     const normalItems = normalSeen.map((message) => createCollectionItem(message, {
       seen: true,
     }));
-    collectionList.appendChild(createCategorySection("Messages", normalItems));
+    collectionList.appendChild(
+      createCategorySection(
+        "Messages",
+        normalItems,
+        `${normalSeen.length}/${normalMessages.length}`
+      )
+    );
   } else {
     const empty = document.createElement("div");
     empty.className = "collection-empty";
@@ -178,11 +196,20 @@ function renderCollection() {
     collectionList.appendChild(empty);
   }
 
+  const bonusSeen = bonusMessages.filter((message) => seen.has(message));
+
   const bonusItems = bonusMessages.map((message) => createCollectionItem(message, {
     seen: seen.has(message),
     locked: !allNormalSeen && !seen.has(message),
   }));
-  collectionList.appendChild(createCategorySection("Bonus", bonusItems));
+
+  collectionList.appendChild(
+    createCategorySection(
+      "Bonus",
+      bonusItems,
+      `${bonusSeen.length}/${bonusMessages.length}`
+    )
+  );
 }
 
 function pickRandomMessage() {
